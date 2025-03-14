@@ -3,7 +3,7 @@ package coffeeShopSimulator.coffee;
 public class Latte implements Coffee{
     @Override
     public double getCost() {
-        return 0;
+        return 4.50;
     }
 
     @Override
