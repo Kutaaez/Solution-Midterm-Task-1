@@ -8,6 +8,6 @@ public class Espresso implements Coffee {
 
     @Override
     public String getDescription() {
-        return "A strong and rich coffee shot with an intense flavor.";
+        return "Espresso \nA strong and rich coffee shot with an intense flavor.";
     }
 }

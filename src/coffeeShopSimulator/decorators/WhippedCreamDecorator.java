@@ -16,6 +16,6 @@ public class WhippedCreamDecorator extends CoffeeDecorator  {
 
     @Override
     public String getDescription() {
-        return coffee.getDescription() + " A light and fluffy topping for a sweeter, creamier taste.";
+        return coffee.getDescription() + "\n + A light and fluffy topping for a sweeter, creamier taste.(WhippedCream)";
     }
 }

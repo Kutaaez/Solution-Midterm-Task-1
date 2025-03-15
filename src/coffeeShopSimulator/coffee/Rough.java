@@ -8,6 +8,6 @@ public class Rough implements  Coffee{
 
     @Override
     public String getDescription() {
-        return "A bold and unfiltered coffee with a strong, raw taste.";
+        return "Rough \nA bold and unfiltered coffee with a strong, raw taste.";
     }
 }

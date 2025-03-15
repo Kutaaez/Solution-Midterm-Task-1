@@ -25,38 +25,38 @@ public class CoffeeOrderTerminal {
                 "Latte – $4.50\n" +
                 "\"Smooth and creamy coffee with a generous amount of steamed milk.\"\n" +
                 "\n" +
-                "Rough Coffee – $2.50\n" +
+                "Rough  – $2.50\n" +
                 "\"A bold and unfiltered coffee with a strong, raw taste.\"\n" +
-                "\n" +
-                "\uD83E\uDD5B Add-ons Prices & Descriptions\n" +
-                "Milk – +$0.50\n" +
-                "\"Adds a smooth and creamy texture to your coffee.\"\n" +
-                "\n" +
-                "Caramel Syrup – +$0.70\n" +
-                "\"A sweet caramel touch for a richer flavor.\"\n" +
-                "\n" +
-                "Chocolate Syrup – +$0.80\n" +
-                "\"A delightful chocolatey twist to enhance your drink.\"\n" +
-                "\n" +
-                "Whipped Cream – +$0.60\n" +
-                "\"A light and fluffy topping for a sweeter, creamier taste.\"");
+                "\n");
         String typeOfCoffee = scanner.nextLine().trim().toLowerCase();
         Coffee coffee;
 
         //create coffee use of pattern factory
         try{
             coffee = CoffeeFactory.createCoffee(typeOfCoffee);
-            System.out.printf("Your %s has been made!",typeOfCoffee);
+            System.out.printf("Your ☕ %s has been made!",typeOfCoffee);
 
             }
         catch(IllegalArgumentException e ){
-            System.out.println("Invalid coffee type. Exiting...");
+            System.out.println("Invalid coffee type. Exiting...\n");
             return;
         }
         //create while cycle for adding extra ingredints for our coffee, this we use decorator pattern for announce or adding new information for our classes (coffee).
 
         while(true){
-            System.out.print("Add extra ingredient for your coffee!\nOr write done if you do not need ingredients");
+            System.out.print("\n\nAdd extra ingredient for your coffee!\nOr write 'DONE' if you do not need ingredients\n\n" +
+                    "\uD83E\uDD5B Add-ons Prices & Descriptions\n" +
+                    "Milk – +$0.50\n" +
+                    "\"Adds a smooth and creamy texture to your coffee.\"\n" +
+                    "\n" +
+                    "Caramel  – +$0.70\n" +
+                    "\"A sweet caramel touch for a richer flavor.\"\n" +
+                    "\n" +
+                    "Chocolate  – +$0.80\n" +
+                    "\"A delightful chocolatey twist to enhance your drink.\"\n" +
+                    "\n" +
+                    "WhippedCream  – +$0.60\n" +
+                    "\"A light and fluffy topping for a sweeter, creamier taste.\"\n");
             String extraIndredientName = scanner.nextLine().trim().toLowerCase();
             if(extraIndredientName.equals("done")){
 
@@ -68,7 +68,7 @@ public class CoffeeOrderTerminal {
 
             }
             catch(IllegalArgumentException e ){
-                System.out.println("Invalid ingredient type. Exiting...");
+                System.out.println("Invalid ingredient type. Exiting...\n");
                 return;
             }
 

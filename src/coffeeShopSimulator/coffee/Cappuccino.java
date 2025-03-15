@@ -8,6 +8,6 @@ public class Cappuccino implements Coffee{
 
     @Override
     public String getDescription() {
-        return "A perfect balance of espresso, steamed milk, and frothy milk foam.";
+        return "Cappucino \nA perfect balance of espresso, steamed milk, and frothy milk foam.";
     }
 }

@@ -16,6 +16,6 @@ public class ChocolateDecorator extends CoffeeDecorator{
 
     @Override
     public String getDescription() {
-        return coffee.getDescription() + " A delightful chocolatey twist to enhance your drink.";
+        return coffee.getDescription() + "\n +  A delightful chocolatey twist to enhance your drink.(ChocolateDecorator)";
     }
 }

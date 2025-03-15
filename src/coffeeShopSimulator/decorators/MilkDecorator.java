@@ -15,6 +15,6 @@ public class MilkDecorator extends CoffeeDecorator{
 
     @Override
     public String getDescription() {
-        return coffee.getDescription() + " Adds a smooth and creamy texture to your coffee.";
+        return coffee.getDescription() + "\n +  Adds a smooth and creamy texture to your coffee.(MilkDecorator)";
     }
 }

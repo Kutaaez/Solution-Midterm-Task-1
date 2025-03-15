@@ -16,6 +16,6 @@ public class CaramelDecorator extends  CoffeeDecorator{
 
     @Override
     public String getDescription() {
-        return coffee.getDescription() +  " A sweet caramel touch for a richer flavor.";
+        return coffee.getDescription() +  "\n + A sweet caramel touch for a richer flavor. (CaramelDecorator)\n";
     }
 }

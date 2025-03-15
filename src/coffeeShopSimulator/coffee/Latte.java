@@ -8,6 +8,6 @@ public class Latte implements Coffee{
 
     @Override
     public String getDescription() {
-        return "Smooth and creamy coffee with a generous amount of steamed milk.";
+        return "Latte \nSmooth and creamy coffee with a generous amount of steamed milk.";
     }
 }
