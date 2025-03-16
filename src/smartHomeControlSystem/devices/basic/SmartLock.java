@@ -1,8 +1,8 @@
 package smartHomeControlSystem.devices.basic;
 
-import smartHomeControlSystem.devices.basic.SmartDevice;
+import smartHomeControlSystem.devices.SmartDevice;
 
-public class SmartLock extends SmartDevice {
+public abstract class SmartLock extends SmartDevice {
     private boolean smartLockLocked;
     private String smartLockPinCode;
     public SmartLock(String smartLockName, String pinCode) {
@@ -41,11 +41,13 @@ public class SmartLock extends SmartDevice {
         }
     }
     public void checkLockStatus() {
-        System.out.println(getName() + " is currently " + (locked ? "LOCKED" : "UNLOCKED") + ".");
+        System.out.println(getName() + " is currently " + (smartLockLocked ? "LOCKED" : "UNLOCKED") + ".");
     }
 
     @Override
     public void performFunction() {
         checkLockStatus();
     }
+
+    public abstract void unlock();
 }

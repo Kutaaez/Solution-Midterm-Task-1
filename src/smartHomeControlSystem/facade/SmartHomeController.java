@@ -1,6 +1,6 @@
 package smartHomeControlSystem.facade;
 
-import smartHomeControlSystem.devices.basic.SmartDevice;
+import smartHomeControlSystem.devices.SmartDevice;
 import java.util.ArrayList;
 import java.util.List;
 //here we use Facade design patter because he single interface

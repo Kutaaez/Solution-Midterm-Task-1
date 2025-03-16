@@ -1,6 +1,6 @@
 package smartHomeControlSystem.factories;
 
-import smartHomeControlSystem.devices.SmartAirPurifier;
+import smartHomeControlSystem.devices.basic.SmartAirPurifier;
 import smartHomeControlSystem.devices.advanced.AdvancedSmartAirPurifier;
 import smartHomeControlSystem.devices.advanced.AdvancedSmartLight;
 import smartHomeControlSystem.devices.advanced.AdvancedSmartLock;

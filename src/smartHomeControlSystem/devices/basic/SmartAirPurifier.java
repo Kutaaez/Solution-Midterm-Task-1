@@ -1,6 +1,6 @@
-package smartHomeControlSystem.devices;
+package smartHomeControlSystem.devices.basic;
 
-import smartHomeControlSystem.devices.basic.SmartDevice;
+import smartHomeControlSystem.devices.SmartDevice;
 
 public class SmartAirPurifier extends SmartDevice {
     private int airPurifieirFanSpeed;

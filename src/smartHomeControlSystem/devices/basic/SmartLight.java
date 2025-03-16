@@ -1,6 +1,6 @@
 package smartHomeControlSystem.devices.basic;
 
-import smartHomeControlSystem.devices.basic.SmartDevice;
+import smartHomeControlSystem.devices.SmartDevice;
 
 public class SmartLight extends SmartDevice {
     private int lightBrightness;

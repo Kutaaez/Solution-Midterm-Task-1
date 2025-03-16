@@ -1,6 +1,6 @@
 package smartHomeControlSystem.devices.advanced;
 
-import smartHomeControlSystem.devices.SmartAirPurifier;
+import smartHomeControlSystem.devices.basic.SmartAirPurifier;
 
 public class AdvancedSmartAirPurifier extends SmartAirPurifier {
     private boolean ionizer;
