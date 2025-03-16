@@ -1,4 +1,4 @@
 package onlinePaymentGateway.systems;
 
-public class CryptoPayment implements  IPaymentMethos{
+public class CryptoPayment implements IPaymentMethod {
 }
