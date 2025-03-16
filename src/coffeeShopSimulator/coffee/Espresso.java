@@ -1,6 +1,6 @@
 package coffeeShopSimulator.coffee;
 
-public class Espresso implements Coffee {
+public class Espresso implements ICoffee {
     @Override
     public double getCost() {
         return 3.00;

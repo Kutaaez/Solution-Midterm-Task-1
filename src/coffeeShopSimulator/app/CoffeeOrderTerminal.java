@@ -1,12 +1,11 @@
 package coffeeShopSimulator.app;
 
-import coffeeShopSimulator.coffee.Coffee;
+import coffeeShopSimulator.coffee.ICoffee;
 
 import coffeeShopSimulator.factory.CoffeeFactory;
 import coffeeShopSimulator.factory.DecoratorFactory;
 
 
-import java.util.IllegalFormatException;
 import java.util.Scanner;
 
 public class CoffeeOrderTerminal {
@@ -29,7 +28,7 @@ public class CoffeeOrderTerminal {
                 "\"A bold and unfiltered coffee with a strong, raw taste.\"\n" +
                 "\n");
         String typeOfCoffee = scanner.nextLine().trim().toLowerCase();
-        Coffee coffee;
+        ICoffee coffee;
 
         //create coffee use of pattern factory
         try{

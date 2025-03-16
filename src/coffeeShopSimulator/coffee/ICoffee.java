@@ -1,6 +1,6 @@
 package coffeeShopSimulator.coffee;
 
-public interface Coffee {
+public interface ICoffee {
     double getCost();
     String getDescription();
 }

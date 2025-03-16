@@ -1,10 +1,10 @@
 package coffeeShopSimulator.decorators;
 
-import coffeeShopSimulator.coffee.Coffee;
+import coffeeShopSimulator.coffee.ICoffee;
 
 public class WhippedCreamDecorator extends CoffeeDecorator  {
     private static final double extraCost = 0.60;
-    public WhippedCreamDecorator(Coffee coffee) {
+    public WhippedCreamDecorator(ICoffee coffee) {
         super(coffee);
     }
 
