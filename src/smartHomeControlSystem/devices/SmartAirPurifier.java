@@ -1,6 +1,8 @@
 package smartHomeControlSystem.devices;
 
-public class SmartAirPurifier extends SmartDevice{
+import smartHomeControlSystem.devices.basic.SmartDevice;
+
+public class SmartAirPurifier extends SmartDevice {
     private int airPurifieirFanSpeed;
     private int airPurifieirQuality;
     @Override

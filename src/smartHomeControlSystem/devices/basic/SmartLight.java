@@ -1,6 +1,8 @@
-package smartHomeControlSystem.devices;
+package smartHomeControlSystem.devices.basic;
 
-public class SmartLight extends SmartDevice{
+import smartHomeControlSystem.devices.basic.SmartDevice;
+
+public class SmartLight extends SmartDevice {
     private int lightBrightness;
     private String lightColor;
 

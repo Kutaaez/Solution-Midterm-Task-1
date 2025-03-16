@@ -1,6 +1,8 @@
-package smartHomeControlSystem.devices;
+package smartHomeControlSystem.devices.basic;
 
-public class SmartLock extends  SmartDevice{
+import smartHomeControlSystem.devices.basic.SmartDevice;
+
+public class SmartLock extends SmartDevice {
     private boolean smartLockLocked;
     private String smartLockPinCode;
     public SmartLock(String smartLockName, String pinCode) {

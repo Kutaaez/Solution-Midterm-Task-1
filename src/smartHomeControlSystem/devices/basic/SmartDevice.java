@@ -1,4 +1,4 @@
-package smartHomeControlSystem.devices;
+package smartHomeControlSystem.devices.basic;
 
 public abstract class SmartDevice {
     protected String deviceName;
