@@ -47,4 +47,17 @@ public class SmartHomeController {
         }
         System.out.println("Device not found: " + deviceName);
     }
+    public void turnOnDevice(String deviceName) {
+        for (SmartDevice device : devices) {
+            if (device.getName().equalsIgnoreCase(deviceName)) {
+                device.turnOn();
+                System.out.println(deviceName + " has been turned on.");
+                return;
+            }
+        }
+        System.out.println("Device not found: " + deviceName);
+    }
+    public List<SmartDevice> getDevices() {
+        return devices;
+    }
 }
