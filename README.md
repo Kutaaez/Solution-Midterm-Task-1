@@ -39,7 +39,7 @@ This project implements a smart home control system that allows you to control v
 
 - 
 
-#2. Online Payment Gateway 
+# 2. Online Payment Gateway 
 
 ## Project Description
 This project implements an Online Payment Gateway that supports multiple payment methods including credit card, PayPal, and cryptocurrency. The system processes basic transactions and integrates with an external API for payment verification and processing. The project utilizes design patterns to ensure flexibility, scalability, and maintainability.
@@ -75,7 +75,7 @@ This project implements an Online Payment Gateway that supports multiple payment
 ![idea64_9MBu0xgUSE](https://github.com/user-attachments/assets/624eeeb1-3db8-4546-a09e-bdcb865bfe3e)
 ![idea64_77njuinCnq](https://github.com/user-attachments/assets/84396ac4-1a40-43c1-b566-683e6e889802)
 
-#3. Coffee Shop Simulator (Easy – 40 points)
+# 3. Coffee Shop Simulator (Easy – 40 points)
 
 ## Project Description
 This Coffee Ordering System allows users to customize their coffee orders by choosing a base coffee type and adding various ingredients or toppings. The system uses the **Factory Method** and **Decorator** design patterns to efficiently manage coffee types and dynamic customization.
