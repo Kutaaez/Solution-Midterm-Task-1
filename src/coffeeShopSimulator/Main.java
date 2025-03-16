@@ -1,6 +1,6 @@
 package coffeeShopSimulator;
 
-import coffeeShopSimulator.app.CoffeeOrderTerminal;
+import coffeeShopSimulator.main.CoffeeOrderTerminal;
 
 public class Main {
     public static void main(String[] args) {

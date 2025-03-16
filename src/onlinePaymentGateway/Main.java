@@ -1,6 +1,5 @@
 package onlinePaymentGateway;
 
-import coffeeShopSimulator.app.CoffeeOrderTerminal;
 import onlinePaymentGateway.main.PaymentApp;
 
 public class Main {

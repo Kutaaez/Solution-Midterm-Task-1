@@ -1,4 +1,4 @@
-package coffeeShopSimulator.app;
+package coffeeShopSimulator.main;
 
 import coffeeShopSimulator.coffee.ICoffee;
 
