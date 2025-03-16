@@ -2,7 +2,7 @@ package smartHomeControlSystem.devices.basic;
 
 import smartHomeControlSystem.devices.SmartDevice;
 
-public abstract class SmartLock extends SmartDevice {
+public class SmartLock extends SmartDevice {
     private boolean smartLockLocked;
     private String smartLockPinCode;
     public SmartLock(String smartLockName, String pinCode) {
@@ -19,15 +19,18 @@ public abstract class SmartLock extends SmartDevice {
         return smartLockPinCode;
     }
 
-    public void lock() {
-        if (!smartLockLocked) {
-            smartLockLocked = true;
-            System.out.println(getName() + " is now LOCKED.");
+    public void lock(String enteredPin) {
+        if (enteredPin.equals(smartLockPinCode)) {
+            if (!smartLockLocked) {
+                smartLockLocked = true;
+                System.out.println(getName() + " is now LOCKED.");
+            } else {
+                System.out.println(getName() + " is already locked.");
+            }
         } else {
-            System.out.println(getName() + " is already locked.");
+            System.out.println("Incorrect PIN. Access denied.");
         }
     }
-
     public void unlock(String enteredPin) {
         if (enteredPin.equals(smartLockPinCode)) {
             if (smartLockLocked) {
@@ -48,6 +51,4 @@ public abstract class SmartLock extends SmartDevice {
     public void performFunction() {
         checkLockStatus();
     }
-
-    public abstract void unlock();
 }

@@ -9,7 +9,7 @@ public class DeviceGroup implements  ISmartHomeComponent{
 
     public DeviceGroup(String groupName) {
         this.groupName = groupName;
-        this.components =  new ArrayList<>();;
+        this.components =  new ArrayList<>();
     }
     public void addComponent(ISmartHomeComponent component) {
         components.add(component);
@@ -42,18 +42,27 @@ public class DeviceGroup implements  ISmartHomeComponent{
         return groupName;
 
     }
-
     @Override
     public boolean isOn() {
         for (ISmartHomeComponent component : components) {
-            if (!component.isOn()) {
-                return false;
+            if (component.isOn()) {
+                return true;
             }
         }
-        return true;
+        return false;
+    }
+
+    public void clearComponents() {
+        components.clear();
     }
 
     public List<ISmartHomeComponent> getComponents() {
         return components;
+    }
+    public void performFunction() {
+        System.out.println("Performing function on all devices in group " + groupName + "...");
+        for (ISmartHomeComponent component : components) {
+            component.performFunction();
+        }
     }
 }

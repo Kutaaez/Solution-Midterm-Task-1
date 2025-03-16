@@ -1,67 +1,58 @@
 package smartHomeControlSystem.decorators;
 
 import smartHomeControlSystem.devices.SmartDevice;
-import java.util.ArrayList;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-//Decorator for logging actions of devices in local map storage
 public class LoggingDecorator extends SmartDevice {
     private final SmartDevice decoratedDevice;
-    private static final Map<String, List<String>> logs = new HashMap<>();
+    private final Map<String, String> logs;
 
     public LoggingDecorator(SmartDevice device) {
         super(device.getName());
         this.decoratedDevice = device;
+        this.logs = new HashMap<>();
     }
 
     @Override
     public void turnOn() {
         decoratedDevice.turnOn();
-        log(decoratedDevice.getName(), "turned on.");
+        log("turned on");
     }
 
     @Override
     public void turnOff() {
         decoratedDevice.turnOff();
-        log(decoratedDevice.getName(), "turned off.");
+        log("turned off");
     }
 
     @Override
     public void performFunction() {
         decoratedDevice.performFunction();
-        log(decoratedDevice.getName(), "performed its function.");
+        log("performed its function");
     }
 
-    protected static void log(String deviceName, String message) {
-        logs.putIfAbsent(deviceName, new ArrayList<>());
-        logs.get(deviceName).add(message);
-        System.out.println("Log [" + deviceName + "]: " + message);
+    private void log(String message) {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String logEntry = "[" + timestamp + "] " + message;
+        logs.put(timestamp, logEntry);
+        System.out.println("Log [" + getName() + "]: " + logEntry);
     }
 
-    public static void printLogs(String deviceName) {
-        if (logs.containsKey(deviceName)) {
-            System.out.println("Logs for " + deviceName + ":");
-            for (String log : logs.get(deviceName)) {
-                System.out.println(log);
-            }
-        } else {
-            System.out.println("No logs found for " + deviceName + ".");
-        }
-    }
-
-    public static void printAllLogs() {
+    public void printLogs() {
         if (logs.isEmpty()) {
-            System.out.println("No logs recorded.");
+            System.out.println("No logs found for " + getName() + ".");
             return;
         }
-        System.out.println("All Device Logs:");
-        for (Map.Entry<String, List<String>> entry : logs.entrySet()) {
-            System.out.println("Logs for " + entry.getKey() + ":");
-            for (String log : entry.getValue()) {
-                System.out.println(log);
-            }
-        }
+        System.out.println("Logs for " + getName() + ":");
+        logs.values().forEach(System.out::println);
+    }
+
+    public void clearLogs() {
+        logs.clear();
+        System.out.println("Logs for " + getName() + " have been cleared.");
     }
 }

@@ -5,4 +5,5 @@ public interface ISmartHomeComponent {
     void turnOff();
     String getName();
     boolean isOn();
+    void performFunction();
 }

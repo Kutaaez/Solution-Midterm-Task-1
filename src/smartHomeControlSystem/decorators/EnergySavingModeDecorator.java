@@ -5,39 +5,35 @@ import smartHomeControlSystem.devices.basic.SmartAirPurifier;
 import smartHomeControlSystem.devices.basic.SmartLight;
 
 public class EnergySavingModeDecorator extends SmartDevice {
-    private SmartDevice device;
+    private final SmartDevice device;
     private boolean energySavingMode;
 
     public EnergySavingModeDecorator(SmartDevice device) {
-        super(device.getName() + " (Energy Saving Mode)");
+        super(device.getName());
         this.device = device;
         this.energySavingMode = false;
     }
 
     public void enableEnergySavingMode() {
-        energySavingMode = true;
-        System.out.println(device.getName() + " is now in Energy Saving Mode.");
-        applyEnergySavingSettings();
-        LoggingDecorator.log(device.getName() , " is now in Energy Saving Mode.");
-
+        if (!energySavingMode) {
+            energySavingMode = true;
+            System.out.println(device.getName() + " is now in Energy Saving Mode.");
+            applyEnergySavingSettings();
+        }
     }
 
     public void disableEnergySavingMode() {
-        energySavingMode = false;
-        System.out.println(device.getName() + " exited Energy Saving Mode.");
-        LoggingDecorator.log(device.getName() , " exited Energy Saving Mode.");
-
+        if (energySavingMode) {
+            energySavingMode = false;
+            System.out.println(device.getName() + " exited Energy Saving Mode.");
+        }
     }
 
     private void applyEnergySavingSettings() {
         if (device instanceof SmartLight light) {
             light.setLightBrightness(30);
-            LoggingDecorator.log(device.getName() , " brightness set to 30 (Energy Saving Mode)");
-
         } else if (device instanceof SmartAirPurifier purifier) {
             purifier.setFanSpeed(1);
-            LoggingDecorator.log(device.getName() , " fan speed set to 1 (Energy Saving Mode)");
-
         }
     }
 
@@ -54,5 +50,10 @@ public class EnergySavingModeDecorator extends SmartDevice {
     @Override
     public void performFunction() {
         device.performFunction();
+    }
+
+    @Override
+    public boolean isOn() {
+        return device.isOn();
     }
 }
