@@ -17,6 +17,11 @@ public class PayPalAdapter {
        return externalAPI.processPayPalPayment(payPalMail,amount);
     }
     public void registerAccount(String payPalMail, double initialBalance) {
-        externalAPI.registedPayPal(payPalMail, initialBalance);
+        externalAPI.registerPayPal(payPalMail, initialBalance);
     }
+
+    public double newBalance(String payPalMail){
+        return externalAPI.getPayPalBalancec(payPalMail);
+    }
+
 }

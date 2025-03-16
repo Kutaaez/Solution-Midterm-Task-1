@@ -13,9 +13,12 @@ public class CreditCardAdapter {
         return cardNumber.startsWith("4") || cardNumber.startsWith("5");
     }
     public void registerCard(String cardNumber, double initialBalance) {
-        externalAPI.registedCardCredit(cardNumber, initialBalance);
+        externalAPI.registerCardCredit(cardNumber, initialBalance);
     }
     public boolean processPayment(String cardNumber, double amount) throws InsufficientFundsException {
         return externalAPI.proccessCreditCardPayment(cardNumber, amount);
+    }
+    public double newBalance(String creditCardAddress){
+        return externalAPI.getCreditCardBalances(creditCardAddress);
     }
 }
