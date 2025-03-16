@@ -4,7 +4,7 @@ import smartHomeControlSystem.devices.basic.SmartAirPurifier;
 import smartHomeControlSystem.devices.basic.SmartLight;
 import smartHomeControlSystem.devices.basic.SmartLock;
 
-public class BasicSmartHomeFactory implements SmartDeviceFactory{
+public class BasicSmartHomeFactory implements ISmartDeviceFactory {
     @Override
     public SmartLight createSmartLight(String name) {
         return new SmartLight(name);

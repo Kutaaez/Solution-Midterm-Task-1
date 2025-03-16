@@ -7,7 +7,7 @@ import smartHomeControlSystem.devices.advanced.AdvancedSmartLock;
 import smartHomeControlSystem.devices.basic.SmartLight;
 import smartHomeControlSystem.devices.basic.SmartLock;
 
-public class AdvancedSmartHomeFactory implements SmartDeviceFactory {
+public class AdvancedSmartHomeFactory implements ISmartDeviceFactory {
     @Override
     public SmartLight createSmartLight(String advancedSmartLockname) {
         return new AdvancedSmartLight(advancedSmartLockname);

@@ -1,6 +1,8 @@
 package smartHomeControlSystem.devices;
 
-public abstract class SmartDevice {
+import smartHomeControlSystem.composite.ISmartHomeComponent;
+
+public abstract class SmartDevice implements ISmartHomeComponent {
     protected String deviceName;
     protected boolean deviceIsOn;
 
