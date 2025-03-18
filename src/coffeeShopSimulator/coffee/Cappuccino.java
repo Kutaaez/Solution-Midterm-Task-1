@@ -1,13 +1,18 @@
 package coffeeShopSimulator.coffee;
 
-public class Cappuccino implements ICoffee {
-    @Override
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cappuccino extends Coffee {
+    private double coffeeCost = 3.00;
+    private String coffeeDescription =  "Cappucino \nA perfect balance of espresso, steamed milk, and frothy milk foam.";
+
     public double getCost() {
-        return 3.00;
+        return coffeeCost;
     }
 
-    @Override
+
     public String getDescription() {
-        return "Cappucino \nA perfect balance of espresso, steamed milk, and frothy milk foam.";
+        return coffeeDescription;
     }
 }

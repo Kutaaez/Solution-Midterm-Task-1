@@ -6,7 +6,7 @@ import java.util.Locale;
 //creating class coffeefactory for generate coffee choose in info other classes.  It's class  one of develop pattern.
 
 public class CoffeeFactory {
-    public static ICoffee createCoffee(String typeOfCoffee){
+    public static Coffee createCoffee(String typeOfCoffee){
         switch(typeOfCoffee.toLowerCase(Locale.ROOT)){
             case "cappuccino","капучино":
                 return new Cappuccino();

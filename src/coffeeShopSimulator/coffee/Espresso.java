@@ -1,13 +1,19 @@
 package coffeeShopSimulator.coffee;
 
-public class Espresso implements ICoffee {
-    @Override
+import java.util.ArrayList;
+import java.util.List;
+
+public class Espresso extends Coffee {
+    private double coffeeCost = 3.00;
+    private String coffeeDescription = "Espresso \nA strong and rich coffee shot with an intense flavor.";
+
     public double getCost() {
-        return 3.00;
+        return coffeeCost;
     }
 
-    @Override
+
     public String getDescription() {
-        return "Espresso \nA strong and rich coffee shot with an intense flavor.";
+        return coffeeDescription;
     }
+
 }

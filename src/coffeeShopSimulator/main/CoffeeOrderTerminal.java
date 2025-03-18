@@ -1,6 +1,6 @@
 package coffeeShopSimulator.main;
 
-import coffeeShopSimulator.coffee.ICoffee;
+import coffeeShopSimulator.coffee.Coffee;
 
 import coffeeShopSimulator.factory.CoffeeFactory;
 import coffeeShopSimulator.factory.DecoratorFactory;
@@ -28,7 +28,7 @@ public class CoffeeOrderTerminal {
                 "\"A bold and unfiltered coffee with a strong, raw taste.\"\n" +
                 "\n");
         String typeOfCoffee = scanner.nextLine().trim().toLowerCase();
-        ICoffee coffee;
+        Coffee coffee;
 
         //create coffee use of pattern factory
         try{

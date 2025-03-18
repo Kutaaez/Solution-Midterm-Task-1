@@ -9,7 +9,7 @@ import coffeeShopSimulator.decorators.WhippedCreamDecorator;
 import java.util.Locale;
 
 public class DecoratorFactory {
-    public static ICoffee addIngredint(ICoffee coffee, String typeOfIngredient){
+    public static Coffee addIngredint(Coffee coffee, String typeOfIngredient){
         switch(typeOfIngredient.toLowerCase(Locale.ROOT)){
             case "milk","молоко":
                 return new MilkDecorator(coffee);

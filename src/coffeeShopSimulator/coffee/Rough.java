@@ -1,13 +1,18 @@
 package coffeeShopSimulator.coffee;
 
-public class Rough implements ICoffee {
-    @Override
+import java.util.ArrayList;
+import java.util.List;
+
+public class Rough extends Coffee {
+    private double coffeeCost = 2.50;
+    private String coffeeDescription = "Rough \nA bold and unfiltered coffee with a strong, raw taste.";
+
     public double getCost() {
-        return 2.50;
+        return coffeeCost;
     }
 
-    @Override
+
     public String getDescription() {
-        return "Rough \nA bold and unfiltered coffee with a strong, raw taste.";
+        return coffeeDescription;
     }
 }
