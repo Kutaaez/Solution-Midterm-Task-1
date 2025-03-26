@@ -2,20 +2,26 @@ package coffeeShopSimulator.decorators;
 
 import coffeeShopSimulator.coffee.Coffee;
 
-public class WhippedCreamDecorator extends CoffeeDecorator  {
-    private static final double extraCost = 0.60;
+
+public class WhippedCreamDecorator extends CoffeeDecorator {
+
+    private double whippedCreamPrice;
+
     public WhippedCreamDecorator(Coffee coffee) {
         super(coffee);
+        this.whippedCreamPrice = 0.60;
     }
 
-    @Override
+    public double getWhippedCreamPrice() {
+        return whippedCreamPrice;
+    }
 
-    public double getCost() {
-        return coffee.getCost() + extraCost;
+    public void setWhippedCreamPrice(double whippedCreamPrice) {
+        this.whippedCreamPrice = whippedCreamPrice;
     }
 
     @Override
     public String getDescription() {
-        return coffee.getDescription() + "\n + A light and fluffy topping for a sweeter, creamier taste.(WhippedCream)";
+        return super.getDescription() + "\n + A light and fluffy topping for a sweeter, creamier taste. (WhippedCreamDecorator)\n";
     }
 }
