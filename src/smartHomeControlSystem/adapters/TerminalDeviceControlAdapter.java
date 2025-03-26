@@ -5,11 +5,12 @@ import smartHomeControlSystem.composite.ISmartHomeComponent;
 import smartHomeControlSystem.decorators.EnergySavingModeDecorator;
 import smartHomeControlSystem.decorators.LoggingDecorator;
 import smartHomeControlSystem.devices.basic.SmartLock;
-import smartHomeControlSystem.facade.SmartHomeController;
+import smartHomeControlSystem.controller.SmartHomeController;
 import smartHomeControlSystem.devices.SmartDevice;
 import smartHomeControlSystem.factories.AdvancedSmartHomeFactory;
 import smartHomeControlSystem.factories.BasicSmartHomeFactory;
 import smartHomeControlSystem.factories.ISmartDeviceFactory;
+import smartHomeControlSystem.manager.SmartDeviceManager;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,16 +19,17 @@ import java.util.Scanner;
 
 public class TerminalDeviceControlAdapter {
     private final SmartHomeController controller;
+    private final SmartDeviceManager deviceManager;
+
     private final Scanner scanner;
-    private final Map<String, SmartDevice> devices;
-    private final Map<String, DeviceGroup> groups;
+
     private final Map<String, LoggingDecorator> loggingDecorators;
 
-    public TerminalDeviceControlAdapter(SmartHomeController controller) {
+    public TerminalDeviceControlAdapter(SmartHomeController controller, SmartDeviceManager deviceManager) {
         this.controller = controller;
+        this.deviceManager = deviceManager;
         this.scanner = new Scanner(System.in);
-        this.devices = new HashMap<>();
-        this.groups = new HashMap<>();
+
         this.loggingDecorators = new HashMap<>();
     }
 
@@ -103,7 +105,6 @@ public class TerminalDeviceControlAdapter {
                 System.out.println("Unknown command. Type 'help' for a list of commands.");
         }
     }
-
     private void handleCreateCommand(String[] parts) {
         if (parts.length < 3) {
             System.out.println("Invalid command. Usage: create device [type] [name] or create group [name]");
@@ -113,7 +114,7 @@ public class TerminalDeviceControlAdapter {
         if (parts[1].equalsIgnoreCase("device")) {
             String type = parts[2];
             String name = parts[3];
-            SmartDevice device = controller.getDeviceByName(name);
+            SmartDevice device = deviceManager.getDeviceByName(name);
             if (device != null) {
                 System.out.println("Device with name " + name + " already exists.");
                 return;
@@ -133,26 +134,25 @@ public class TerminalDeviceControlAdapter {
                     device = factory.createSmartAirPurifier(name);
                     break;
                 case "speaker":
-                    device = new SmartSpeakerAdapter(controller, name);
+                    device = new SmartSpeakerAdapter(deviceManager, name);
                     break;
                 default:
                     System.out.println("Unknown device type: " + type);
                     return;
             }
 
-            devices.put(name, device);
-            controller.addDevice(device);
+            deviceManager.addDevice(device);
+
             System.out.println("Device " + name + " created successfully.");
         } else if (parts[1].equalsIgnoreCase("group")) {
             String name = parts[2];
-            if (groups.containsKey(name)) {
+            if (deviceManager.getGroupByName(name) != null) {
                 System.out.println("Group with name " + name + " already exists.");
                 return;
             }
 
             DeviceGroup group = new DeviceGroup(name);
-            groups.put(name, group);
-            controller.addGroup(group);
+            deviceManager.addGroup(group);
             System.out.println("Group " + name + " created successfully.");
         } else {
             System.out.println("Invalid command. Usage: create device [type] [name] or create group [name]");
@@ -167,7 +167,7 @@ public class TerminalDeviceControlAdapter {
         String speakerName = parts[1];
         String command = String.join(" ", Arrays.copyOfRange(parts, 2, parts.length));
 
-        SmartDevice device = devices.get(speakerName);
+        SmartDevice device = deviceManager.getDeviceByName(speakerName);
         if (device instanceof SmartSpeakerAdapter) {
             ((SmartSpeakerAdapter) device).executeVoiceCommand(command);
         } else {
@@ -200,8 +200,8 @@ public class TerminalDeviceControlAdapter {
         String deviceName = parts[2];
         String groupName = parts[5];
 
-        SmartDevice device = devices.get(deviceName);
-        DeviceGroup group = groups.get(groupName);
+        SmartDevice device = deviceManager.getDeviceByName(deviceName);
+        DeviceGroup group = deviceManager.getGroupByName(groupName);
 
         if (device == null) {
             System.out.println("Device " + deviceName + " not found.");
@@ -227,8 +227,8 @@ public class TerminalDeviceControlAdapter {
         String target = parts[2];
 
         if (action.equalsIgnoreCase("on") || action.equalsIgnoreCase("off")) {
-            SmartDevice device = devices.get(target);
-            DeviceGroup group = groups.get(target);
+            SmartDevice device = deviceManager.getDeviceByName(target);
+            DeviceGroup group = deviceManager.getGroupByName(target);
 
             if (device != null) {
                 if (action.equalsIgnoreCase("on")) {
@@ -270,33 +270,10 @@ public class TerminalDeviceControlAdapter {
             return;
         }
 
-        String type = parts[1];
-        String name = parts[2];
-
-        if (type.equalsIgnoreCase("device")) {
-            SmartDevice device = devices.get(name);
-            if (device != null) {
-                System.out.println("Device: " + device.getName());
-                System.out.println("Status: " + (device.isOn() ? "ON" : "OFF"));
-                device.performFunction();
-            } else {
-                System.out.println("Device " + name + " not found.");
-            }
-        } else if (type.equalsIgnoreCase("group")) {
-            DeviceGroup group = groups.get(name);
-            if (group != null) {
-                System.out.println("Group: " + group.getName());
-                System.out.println("Devices in group:");
-                for (ISmartHomeComponent component : group.getComponents()) {
-                    System.out.println("- " + component.getName());
-                }
-            } else {
-                System.out.println("Group " + name + " not found.");
-            }
-        } else {
-            System.out.println("Invalid command. Usage: show device [device_name] or show group [group_name]");
-        }
+        String command = "show " + parts[1] + " " + parts[2];
+        controller.executeCommand(command);
     }
+
 
     private void handleApplyDecoratorCommand(String[] parts) {
         if (parts.length < 6 || !parts[3].equalsIgnoreCase("to")) {
@@ -307,7 +284,7 @@ public class TerminalDeviceControlAdapter {
         String decoratorType = parts[2];
         String deviceName = parts[5];
 
-        SmartDevice device = devices.get(deviceName);
+        SmartDevice device = deviceManager.getDeviceByName(deviceName);
         if (device == null) {
             System.out.println("Device " + deviceName + " not found.");
             return;
@@ -317,13 +294,14 @@ public class TerminalDeviceControlAdapter {
             case "energy-saving":
                 EnergySavingModeDecorator energySavingDecorator = new EnergySavingModeDecorator(device);
                 energySavingDecorator.enableEnergySavingMode();
-                devices.put(deviceName, energySavingDecorator);
+                deviceManager.removeDevice(deviceName);
+                deviceManager.addDevice(energySavingDecorator);
                 System.out.println("Energy-saving decorator applied to " + deviceName + ".");
                 break;
             case "logging":
                 LoggingDecorator loggingDecorator = new LoggingDecorator(device);
                 loggingDecorators.put(deviceName, loggingDecorator);
-                devices.put(deviceName, loggingDecorator);
+                deviceManager.addDevice( loggingDecorator);
                 System.out.println("Logging decorator applied to " + deviceName + ".");
                 break;
             default:

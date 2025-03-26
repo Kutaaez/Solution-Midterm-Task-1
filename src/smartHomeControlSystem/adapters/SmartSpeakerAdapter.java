@@ -1,12 +1,12 @@
 package smartHomeControlSystem.adapters;
 
 import smartHomeControlSystem.devices.SmartDevice;
-import smartHomeControlSystem.facade.SmartHomeController;
+import smartHomeControlSystem.manager.SmartDeviceManager;
 
 public class SmartSpeakerAdapter extends SmartDevice {
-    private final SmartHomeController controller;
+    private final SmartDeviceManager controller;
 
-    public SmartSpeakerAdapter(SmartHomeController controller, String name) {
+    public SmartSpeakerAdapter(SmartDeviceManager controller, String name) {
         super(name);
         this.controller = controller;
     }
